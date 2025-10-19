@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVC Framework - Test Application</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+
+        .test-section {
+            margin: 30px 0;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+
+        .test-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .test-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .test-button.get { background: linear-gradient(135deg, #28a745, #20c997); }
+        .test-button.post { background: linear-gradient(135deg, #007bff, #6610f2); }
+        .test-button.put { background: linear-gradient(135deg, #ffc107, #fd7e14); }
+        .test-button.delete { background: linear-gradient(135deg, #dc3545, #e83e8c); }
+
+        .form-section {
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .info-box h3 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+
+        .feature-list {
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        .feature-list li {
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🚀</div>
+        <h1>MVC Framework</h1>
+        <p class="subtitle">Application de Test - Sprint 1</p>
+        <div class="version-badge">Version 1.0.0</div>
+
+        <div class="info-box">
+            <h3>🎯 Objectif du Sprint</h3>
+            <p>Tester le <strong>FrontServlet</strong> qui joue le rôle de <strong>Front Controller</strong> et intercepte toutes les requêtes HTTP pour afficher leurs informations détaillées.</p>
+        </div>
+
+        <div class="test-section">
+            <h2>🧪 Tests des Méthodes HTTP</h2>
+            <p>Cliquez sur les boutons ci-dessous pour tester les différentes méthodes HTTP :</p>
+            
+            <div class="button-grid">
+                <a href="/mvc-test/test/get?param1=test&param2=framework" class="test-button get">
+                    GET Request
+                </a>
+                <button onclick="testPost()" class="test-button post">
+                    POST Request
+                </button>
+                <button onclick="testPut()" class="test-button put">
+                    PUT Request
+                </button>
+                <button onclick="testDelete()" class="test-button delete">
+                    DELETE Request
+                </button>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>📝 Test avec Formulaire POST</h2>
+            <form method="POST" action="/mvc-test/submit" class="form-section">
+                <div class="form-group">
+                    <label for="name">Nom :</label>
+                    <input type="text" id="name" name="name" value="John Doe" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" name="email" value="john.doe@example.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message :</label>
+                    <textarea id="message" name="message" placeholder="Votre message ici...">Test du framework MVC avec des données POST</textarea>
+                </div>
+                
+                <button type="submit" class="test-button post">Envoyer le Formulaire</button>
+            </form>
+        </div>
+
+        <div class="test-section">
+            <h2>🏗️ Fonctionnalités Implémentées</h2>
+            <ul class="feature-list">
+                <li>Interception de toutes les requêtes HTTP (/*)</li>
+                <li>Support des méthodes GET, POST, PUT, DELETE</li>
+                <li>Affichage détaillé des informations de requête</li>
+                <li>Extraction et affichage des paramètres</li>
+                <li>Affichage des headers HTTP</li>
+                <li>Informations de session</li>
+                <li>Mode Debug activé</li>
+                <li>Interface utilisateur moderne et responsive</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>🔧 Technologies Utilisées</h3>
+            <p><strong>Backend :</strong> Java 8, Servlet API 4.0.1, Maven 3</p>
+            <p><strong>Serveur :</strong> Apache Tomcat 10.1.28</p>
+            <p><strong>Architecture :</strong> Pattern Front Controller, Maven Multi-modules</p>
+        </div>
+    </div>
+
+    <script>
+        function testPost() {
+            fetch('/mvc-test/api/test', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Test-Header': 'POST-Test'
+                },
+                body: JSON.stringify({
+                    action: 'test',
+                    method: 'POST',
+                    timestamp: new Date().toISOString()
+                })
+            }).then(() => {
+                window.location.href = '/mvc-test/api/test';
+            });
+        }
+
+        function testPut() {
+            fetch('/mvc-test/api/update', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Test-Header': 'PUT-Test'
+                },
+                body: JSON.stringify({
+                    action: 'update',
+                    method: 'PUT',
+                    timestamp: new Date().toISOString()
+                })
+            }).then(() => {
+                window.location.href = '/mvc-test/api/update';
+            });
+        }
+
+        function testDelete() {
+            fetch('/mvc-test/api/delete/123', {
+                method: 'DELETE',
+                headers: {
+                    'X-Test-Header': 'DELETE-Test'
+                }
+            }).then(() => {
+                window.location.href = '/mvc-test/api/delete/123';
+            });
+        }
+    </script>
+</body>
+</html>
